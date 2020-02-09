@@ -3,7 +3,7 @@ Rubik Cube algorithm collection with [CFOP](https://en.wikipedia.org/wiki/CFOP_m
 
 #### How to Compile
 `$ pdflatex main.tex`
-The name of output file will be **main.pdf**
+>The name of output file will be **main.pdf**
 
 #### License
 Source file: [BSD License](https://github.com/dirsulaiman/cfop/blob/master/LICENSE)
