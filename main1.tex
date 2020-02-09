@@ -1,0 +1,171 @@
+\documentclass{article}
+\usepackage[a4paper,bindingoffset=0in,left=0.5in,right=0.5in,top=1in,bottom=1in,footskip=.25in]{geometry}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{tabularx}
+
+% \usepackage{showframe} % show frame margin
+\usepackage{blindtext}
+
+\setlength{\leftmargin}{0cm}
+\setlength{\marginparwidth}{0cm}
+\setlength{\columnsep}{1cm}
+\pagenumbering{gobble}
+% \renewcommand{\arraystretch}{1.3}
+
+% Command for load image on images/ directory, arg:{file name}
+\newcommand{\pll}[1]{\includegraphics[width=0.08\textwidth]{images/pll/{#1}}}
+\newcommand{\Oll}[1]{\includegraphics[width=0.08\textwidth]{images/oll/{#1}}}
+% Command for set Algorithm name style, args:{Algorithm nam}{color}{probability}
+\newcommand{\pllname}[3]{\textbf{#1}\small{, probability=\textcolor{#2}{#3}}}
+\newcommand{\ollname}[3]{\textbf{#1}\small{, probability=\textcolor{#2}{#3}}}
+% Shortcut
+\newcommand{\key}[1]{\textbf{#1}}
+\newcommand{\mm}{\textcolor{green}{M2 }}
+\newcommand{\xrotate}[1]{(\textcolor{blue}{#1}) }
+\newcommand{\yrotate}[1]{(\textcolor{green}{#1}) }
+\newcommand{\zrotate}[1]{(\textcolor{red}{#1}) }
+\newcommand{\redfamily}[1]{\textcolor{red}{#1}}
+\newcommand{\bluefamily}[1]{\textcolor{blue}{#1}}
+\newcommand{\greenfamily}[1]{\textcolor{green}{#1}}
+
+% PLL Algorithms
+% Corners Only Algorithms
+\newcommand{\aaperm}{\textsf{l' (U R') D2 (R U' R') D2 R2}}
+\newcommand{\aapermI}{\textsf{\xrotate{x'} (R' D R') U2 (R D' R') U2 R2 }}
+\newcommand{\abperm}{\textsf{l (U' R) D2 (R' U R) D2 R2}}
+\newcommand{\abpermI}{\textsf{\yrotate{y2} \xrotate{x'} (L D' L) U2 (L' D L) U2 L2 }}
+\newcommand{\eperm}{\textsf{\xrotate{x'} [(R U' R') \key{D} (\textcolor{red}{R U R'}) \key{D'}] [(\textcolor{red}{R U R'}) \key{D} (R U' R') \key{D'}]}}
+
+% Edges Only Algorithms
+\newcommand{\uaperm}{\textsf{\mm \key{U'} (M U2 M') \key{U'} \mm }}
+\newcommand{\uapermI}{\textsf{F2 \key{U} (M' U2 M) \key{U} F2 }}
+\newcommand{\ubperm}{\textsf{\mm \key{U} (M U2 M') \key{U} \mm }}
+\newcommand{\ubpermI}{\textsf{F2 \key{U'} (M' U2 M) \key{U'} F2 }}
+\newcommand{\hperm}{\textsf{(\mm U \mm) \key{U2} (\mm U \mm) }}
+\newcommand{\zperm}{\textsf{\mm U \mm U (\key{M' U2}) (\mm U2) M' U2}}
+\newcommand{\zpermI}{\textsf{\yrotate{y'} M' U (\mm U \mm U) M' U2 \mm U'}}
+
+% Adjacent Corner Swap Algorithms
+\newcommand{\japerm}{\textsf{(R' U L') \key{U2} (R U' R') \key{U2} (L R) U'}}
+\newcommand{\japermI}{\textsf{\yrotate{y} \xrotate{x} R2 F R F' R U2 r' U r U2}}
+\newcommand{\japermII}{\textsf{(R D') VPerm  (D R')}}
+\newcommand{\jbperm}{\textsf{(R U R' F') [R U R' U' R' F R2 U' R' U']}}
+\newcommand{\jbpermI}{\textsf{}}
+\newcommand{\tperm}{\textsf{R U R' U' R' F R2 U' R' U' R U R' F'}}
+\newcommand{\tpermI}{\textsf{R2 U R2 U' R2 U' D R2 U' R2 U R2 D'}}
+\newcommand{\fperm}{\textsf{(R' U' F') [R U R' U' R' F R2 U' R' U' R U R' U] R}}
+\newcommand{\raperm}{\textsf{(R U' R' U') (R U R D) (R' U' R D') R' U2 R'}}
+\newcommand{\rbperm}{\textsf{R2 \key{F} R (U R U' R') \key{F'} R U2 R' U2 R U}}
+\newcommand{\rbpermI}{\textsf{ \yrotate{y'} R' U2 R U2 R' F (R U R' U') R' F' R2' U'}}
+
+% Diagonal Corner Swap Algorithms
+\newcommand{\yperm}{\textsf{\key{F} [(R U' R' U') (R U R' F') (\redfamily{R U R' U'}) R' F R] \key{F'}}}
+\newcommand{\vperm}{\textsf{(R' U R' U') \yrotate{y} R' F' R2 U' R' U R' F R F}}
+\newcommand{\naperm}{\textsf{[r' D r U2 ]x5}}
+\newcommand{\napermI}{\textsf{(L D L' F') TPerm without F (L D' L')}}
+\newcommand{\nbperm}{\textsf{R' (\redfamily{U R 'U' R'}) (F' U' F) (R U R' F) R' F' R U' R}}
+
+% G Permutations
+\newcommand{\gaperm}{\textsf{R2 (U R' U R') \key{U'} R U' R2 (U' D) \key{R'} U R D'}}
+\newcommand{\gapermI}{\textsf{\yrotate{y'} (R U R' U' R') U F (R U R U' R') F' U R' U2 R}}
+\newcommand{\gbperm}{\textsf{R' U R (U D') \key{R2} U (R' U R U') R U' R2 D}}
+\newcommand{\gbpermI}{\textsf{R' U' R \yrotate{y} R2 u (R' U R U' R) u' R2}}
+\newcommand{\gcperm}{\textsf{R2 U' R U' (\bluefamily{R U R' U}) R2 (U D') \key{R} U' R' D}}
+\newcommand{\gcpermI}{\textsf{\yrotate{y} F2' D' L U' L U L' D F2 R U' R'}}
+\newcommand{\gdperm}{\textsf{R U R' (U' D) \key{R2} U' R U' (R' U R' U) R2 D'}}
+\newcommand{\gdpermI}{\textsf{L U2 L' U F' (L' U' L U L) F U (L' U' L' U L)}}
+
+
+
+\title{OLL and PLL Algorithms}
+\author{Dir Sulaiman}
+
+\begin{document}
+
+    \begin{table}
+        \section*{Corners Only}
+        \begin{tabularx}{\textwidth}{cXcX}
+        \multirow{4}{*}{\pll{aa.png}} & \pllname{Aa}{blue}{1/18} & \multirow{4}{*}{\pll{ab.png}} & \pllname{Ab}{blue}{1/18} \\
+                          & \aaperm     &   & \abperm   \\
+                          & \aapermI    &   & \abpermI  \\
+                          &             &   &   \\
+        \multirow{4}{*}{\pll{e.png}} & \pllname{E}{green}{1/36}  &  &   \\
+                          & \eperm      &   &  \\
+                          &             &   &  \\
+                          &             &   &  \\
+        \end{tabularx}
+    \end{table}
+
+    \begin{table}
+        \section*{Edges Only}
+        \begin{tabularx}{\textwidth}{cXcX}
+        \multirow{4}{*}{\pll{ua.png}} & \pllname{Ua}{blue}{1/18} & \multirow{4}{*}{\pll{ub.png}} & \pllname{Ub}{blue}{1/18} \\
+                          & \uaperm     &   & \ubperm   \\
+                          & \uapermI    &   & \ubpermI  \\
+                          &             &   &   \\
+        \multirow{4}{*}{\pll{h.png}} & \pllname{H}{red}{1/72}  & \multirow{4}{*}{\pll{z.png}} & \pllname{Z}{green}{1/36}  \\
+                          & \hperm      &   & \zperm  \\
+                          &             &   & \zpermI \\
+                          &             &   &  \\
+        \end{tabularx}
+    \end{table}
+
+    \begin{table}
+        \section*{Adjacent Corner Swap}
+        \begin{tabularx}{\textwidth}{cXcX}
+        \multirow{4}{*}{\pll{ja.png}} & \pllname{Ja}{blue}{1/18} & \multirow{4}{*}{\pll{jb.png}} & \pllname{Jb}{blue}{1/18} \\
+                          & \japerm     &   & \jbperm   \\
+                          & \japermI    &   & \jbpermI  \\
+                          & \japermII   &   &   \\
+        \multirow{4}{*}{\pll{t.png}} & \pllname{T}{blue}{1/18}  & \multirow{4}{*}{\pll{f.png}} & \pllname{F}{blue}{1/18}  \\
+                          & \tperm      &   & \fperm  \\
+                          & \tpermI     &   &  \\
+                          &             &   &  \\
+        \multirow{4}{*}{\pll{ra.png}} & \pllname{Ra}{blue}{1/18}  & \multirow{4}{*}{\pll{rb.png}} & \pllname{Rb}{blue}{1/18}  \\
+                          & \raperm     &   & \rbperm  \\
+                          &             &   & \rbpermI \\
+                          &             &   &  \\
+        \end{tabularx}
+    \end{table}
+
+    \begin{table}
+        \section*{Diagonal Corner Swap}
+        \begin{tabularx}{\textwidth}{cXcX}
+        \multirow{4}{*}{\pll{y.png}} & \pllname{Y}{blue}{1/18} & \multirow{4}{*}{\pll{v.png}} & \pllname{V}{blue}{1/18} \\
+                          & \yperm      &   & \vperm   \\
+                          &             &   &   \\
+                          &             &   &   \\
+        \multirow{4}{*}{\pll{na.png}} & \pllname{Na}{red}{1/72}  & \multirow{4}{*}{\pll{nb.png}} & \pllname{Nb}{red}{1/72}  \\
+                          & \naperm     &   & \nbperm  \\
+                          & \napermI    &   &  \\
+                          &             &   &  \\
+        \end{tabularx}
+    \end{table}
+
+    \begin{table}
+        \section*{G Permutations}
+        \begin{tabularx}{\textwidth}{cXcX}
+        \multirow{4}{*}{\pll{ga.png}} & \pllname{Ga}{blue}{1/18} & \multirow{4}{*}{\pll{gb.png}} & \pllname{Gb}{blue}{1/18} \\
+                          & \gaperm     &   & \gbperm   \\
+                          & \gapermI    &   & \gbpermI  \\
+                          &             &   &   \\
+        \multirow{4}{*}{\pll{gc.png}} & \pllname{Gc}{blue}{1/18}  & \multirow{4}{*}{\pll{gd.png}} & \pllname{Gd}{blue}{1/18}  \\
+                          & \gcperm     &   & \gdperm  \\
+                          & \gcpermI    &   & \gdpermI \\
+                          &             &   &  \\
+        \end{tabularx}
+    \end{table}
+
+\end{document}
+
+% References
+% https://www.speedsolving.com/wiki/index.php/PLL
+% http://www.rubiksplace.com/speedcubing/PLL-algorithms/
+
+# git ls-files --others --exclude-from=.git/info/exclude
+# Lines that start with '#' are comments.
+# For a project mostly in C, the following would be a good set of
+# exclude patterns (uncomment them if you want to use them):$ git conf$
