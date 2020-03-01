@@ -1,5 +1,5 @@
 \documentclass{article}
-\usepackage[a4paper,bindingoffset=0in,left=0.5in,right=0.5in,top=1in,bottom=1in,footskip=.25in]{geometry}
+\usepackage[a4paper, bindingoffset=0in, left=0.15in, right=0.15in, top=.7in, bottom=.5in, footskip=.25in]{geometry}
 \usepackage{multicol}
 \usepackage{multirow}
 \usepackage{graphicx}
@@ -27,10 +27,10 @@
 
 % Command for load image on images/ directory, arg:{file name}
 \newcommand{\pll}[1]{\includegraphics[height=1.6cm]{images/pll/{#1}}}
-\newcommand{\Oll}[1]{\includegraphics[width=0.08\textwidth]{images/oll/{#1}}}
+\newcommand{\oll}[1]{\includegraphics[height=1.6cm]{images/oll/{#1}}}
 % Command for set Algorithm name style, args:{Algorithm nam}{color}{probability}
-\newcommand{\pllname}[3]{\textbf{#1}\small{, probability=\textcolor{#2}{#3}}}
-\newcommand{\ollname}[3]{\textbf{#1}\small{, probability=\textcolor{#2}{#3}}}
+\newcommand{\pllname}[3]{\textbf{#1}\footnotesize{, probability=\textcolor{#2}{#3}} \vspace{0.1cm}}
+\newcommand{\ollname}[3]{\textbf{#1}\footnotesize{, probability=\textcolor{#2}{#3}} \vspace{0.1cm}}
 \newcommand{\algorithm}[1]{
     \fontfamily{pbk}\selectfont
     % set length of character space
@@ -53,7 +53,7 @@
 \newcommand{\aapermI}{\algorithm{\xrotate{x'} (R' D R') U2 (R D' R') U2 R2 }}
 \newcommand{\abperm}{\algorithm{l (U' R) D2 (R' U R) D2 R2}}
 \newcommand{\abpermI}{\algorithm{\yrotate{y2} \xrotate{x'} (L D' L) U2 (L' D L) U2 L2 }}
-\newcommand{\eperm}{\algorithm{\xrotate{x'} [(R U' R') \key{D} (\textcolor{red}{R U R'}) \key{D'}] [(\textcolor{red}{R U R'}) \key{D} (R U' R') \key{D'}]}}
+\newcommand{\eperm}{\algorithm{\xrotate{x'} [(RU'R') \key{D} (\textcolor{red}{RUR'}) \key{D'}] [(\textcolor{red}{RUR'}) \key{D} (RU'R') \key{D'}]}}
 
 % Edges Only Algorithms
 \newcommand{\uaperm}{\algorithm{\mm \key{U'} (M U2 M') \key{U'} \mm }}
@@ -72,7 +72,7 @@
 \newcommand{\jbpermI}{\algorithm{}}
 \newcommand{\tperm}{\algorithm{R U R' U' R' F R2 U' R' U' R U R' F'}}
 \newcommand{\tpermI}{\algorithm{R2 U R2 U' R2 U' D R2 U' R2 U R2 D'}}
-\newcommand{\fperm}{\algorithm{(R' U' F') [R U R' U' R' F R2 U' R' U' R U R' U] R}}
+\newcommand{\fperm}{\algorithm{(R'U'F') [R U R' U' R' F R2 U' R' U' R U R' U] R}}
 \newcommand{\raperm}{\algorithm{(R U' R' U') (R U R D) (R' U' R D') R' U2 R'}}
 \newcommand{\rbperm}{\algorithm{R2 \key{F} R (U R U' R') \key{F'} R U2 R' U2 R U}}
 \newcommand{\rbpermI}{\algorithm{ \yrotate{y'} R' U2 R U2 R' F (R U R' U') R' F' R2' U'}}
@@ -85,95 +85,155 @@
 \newcommand{\nbperm}{\algorithm{R' (\redfamily{U R 'U' R'}) (F' U' F) (R U R' F) R' F' R U' R}}
 
 % G Permutations
-\newcommand{\gaperm}{\algorithm{R2 (U R' U R') \key{U'} R U' R2 (U' D) \key{R'} U R D'}}
-\newcommand{\gapermI}{\algorithm{\yrotate{y'} (R U R' U' R') U F (R U R U' R') F' U R' U2 R}}
-\newcommand{\gbperm}{\algorithm{R' U R (U D') \key{R2} U (R' U R U') R U' R2 D}}
+\newcommand{\gaperm}{\algorithm{D' R2 (U R' U R') \key{U'} R U' R2 (U' D) \key{R'} U R }}
+\newcommand{\gapermI}{\algorithm{\yrotate{y'} (RU R'U' R') UF (RU R U' R') F' U R' U2 R}}
+\newcommand{\gbperm}{\algorithm{D R' U R (U D') \key{R2} U (R' U R U') R U' R2}}
 \newcommand{\gbpermI}{\algorithm{R' U' R \yrotate{y} R2 u (R' U R U' R) u' R2}}
-\newcommand{\gcperm}{\algorithm{R2 U' R U' (\bluefamily{R U R' U}) R2 (U D') \key{R} U' R' D}}
+\newcommand{\gcperm}{\algorithm{D R2 U' R U' (\bluefamily{R U R' U}) R2 (U D') \key{R} U' R'}}
 \newcommand{\gcpermI}{\algorithm{\yrotate{y} F2' D' L U' L U L' D F2 R U' R'}}
-\newcommand{\gdperm}{\algorithm{R U R' (U' D) \key{R2} U' R U' (R' U R' U) R2 D'}}
+\newcommand{\gdperm}{\algorithm{D' R U R' (U' D) \key{R2} U' R U' (R' U R' U) R2}}
 \newcommand{\gdpermI}{\algorithm{L U2 L' U F' (L' U' L U L) F U (L' U' L' U L)}}
+% OLL
+% First steep
 
+% Second steep
+\newcommand{\sune}{\algorithm{ (\bluefamily{R U R' U}) \key{R} U2 R' }}
+\newcommand{\suneI}{\algorithm{ }}
+\newcommand{\antisune}{\algorithm{(L' U' L U') \key{L'} U2 L }}
+\newcommand{\antisuneI}{\algorithm{\yrotate{y'} (\redfamily{R U2 R' U'}) R U' R'}}
+\newcommand{\cross}{\algorithm{f (\redfamily{R U R' U'})x3 f'}}
+\newcommand{\crossI}{\algorithm{ }}
+\newcommand{\pishape}{\algorithm{f (\redfamily{R U R' U'}) (\key{f' F}) (\redfamily{R U R' U'})}}
+\newcommand{\pishapeI}{\algorithm{ }}
+\newcommand{\headlights}{\algorithm{R2 [\key{D} (R' U2) R] [\key{D'} (R' U2) R']}}
+\newcommand{\headlightsI}{\algorithm{ }}
+\newcommand{\lshape}{\algorithm{F' (\redfamily{r U R' U'}) (r' F R) }}
+\newcommand{\lshapeI}{\algorithm{\yrotate{y'} \xrotate{x'} (R U' R') \key{D} (\redfamily{R U R'}) \key{D'}}}
+\newcommand{\tshape}{\algorithm{(\redfamily{r U R' U'})(\greenfamily{r' F R F'})}}
+\newcommand{\tshapeI}{\algorithm{\yrotate{y'} \xrotate{x'} (\redfamily{R U R'}) \key{D} (R U' R') \key{D'}}}
+
+\newcommand{\pshape}{\algorithm{f (\redfamily{R U R' U'}) f'}}
+\newcommand{\ishape}{\algorithm{F (\redfamily{R U R' U'}) F}}
+\newcommand{\ollfIV}{\algorithm{F [R U' R' U'] (R U R') F' }}
+\newcommand{\olltII}{\algorithm{(\redfamily{R U R' U'}) (\greenfamily{R' F R F'})}}
 
 
 \title{OLL and PLL Algorithms}
 \author{Dir Sulaiman}
 
 \begin{document}
-
     \begin{table}
-        \section*{Corners Only}
+        \subsection*{Corners Only}
         \begin{tabularx}{\textwidth}{cXcX}
-        \multirow{4}{*}{\pll{aa.png}} & \pllname{Aa}{blue}{1/18} & \multirow{4}{*}{\pll{ab.png}} & \pllname{Ab}{blue}{1/18} \\
-                          & \aaperm     &   & \abperm   \\
-                          & \aapermI    &   & \abpermI  \\
-                          &             &   &   \\
-        \multirow{4}{*}{\pll{e.png}} & \pllname{E}{green}{1/36}  &  &   \\
-                          & \eperm      &   &  \\
-                          &             &   &  \\
-                          &             &   &  \\
+            \multirow{4}{*}{\pll{aa.png}} & \pllname{Aa}{blue}{1/18} & \multirow{4}{*}{\pll{ab.png}} & \pllname{Ab}{blue}{1/18} \\
+            & \aaperm     &   & \abperm   \\
+            & \aapermI    &   & \abpermI  \\
+            &             &   &   \\
+            \multirow{4}{*}{\pll{e.png}} & \pllname{E}{green}{1/36}  &  &   \\
+            & \eperm      &   &  \\
+            &             &   &  \\
+            &             &   &  \\
         \end{tabularx}
     \end{table}
 
     \begin{table}
-        \section*{Edges Only}
+        \subsection*{Edges Only}
         \begin{tabularx}{\textwidth}{cXcX}
-        \multirow{4}{*}{\pll{ua.png}} & \pllname{Ua}{blue}{1/18} & \multirow{4}{*}{\pll{ub.png}} & \pllname{Ub}{blue}{1/18} \\
-                          & \uaperm     &   & \ubperm   \\
-                          & \uapermI    &   & \ubpermI  \\
-                          &             &   &   \\
-        \multirow{4}{*}{\pll{h.png}} & \pllname{H}{red}{1/72}  & \multirow{4}{*}{\pll{z.png}} & \pllname{Z}{green}{1/36}  \\
-                          & \hperm      &   & \zperm  \\
-                          &             &   & \zpermI \\
-                          &             &   &  \\
+            \multirow{4}{*}{\pll{ua.png}} & \pllname{Ua}{blue}{1/18} & \multirow{4}{*}{\pll{ub.png}} & \pllname{Ub}{blue}{1/18} \\
+            & \uaperm     &   & \ubperm   \\
+            & \uapermI    &   & \ubpermI  \\
+            &             &   &   \\
+            \multirow{4}{*}{\pll{h.png}} & \pllname{H}{red}{1/72}  & \multirow{4}{*}{\pll{z.png}} & \pllname{Z}{green}{1/36}  \\
+            & \hperm      &   & \zperm  \\
+            &             &   & \zpermI \\
+            &             &   &  \\
         \end{tabularx}
     \end{table}
 
     \begin{table}
-        \section*{Adjacent Corner Swap}
+        \subsection*{Adjacent Corner Swap}
         \begin{tabularx}{\textwidth}{cXcX}
-        \multirow{4}{*}{\pll{ja.png}} & \pllname{Ja}{blue}{1/18} & \multirow{4}{*}{\pll{jb.png}} & \pllname{Jb}{blue}{1/18} \\
-                          & \japerm     &   & \jbperm   \\
-                          & \japermI    &   & \jbpermI  \\
-                          & \japermII   &   &   \\
-        \multirow{4}{*}{\pll{t.png}} & \pllname{T}{blue}{1/18}  & \multirow{4}{*}{\pll{f.png}} & \pllname{F}{blue}{1/18}  \\
-                          & \tperm      &   & \fperm  \\
-                          & \tpermI     &   &  \\
-                          &             &   &  \\
-        \multirow{4}{*}{\pll{ra.png}} & \pllname{Ra}{blue}{1/18}  & \multirow{4}{*}{\pll{rb.png}} & \pllname{Rb}{blue}{1/18}  \\
-                          & \raperm     &   & \rbperm  \\
-                          &             &   & \rbpermI \\
-                          &             &   &  \\
+            \multirow{4}{*}{\pll{ja.png}} & \pllname{Ja}{blue}{1/18} & \multirow{4}{*}{\pll{jb.png}} & \pllname{Jb}{blue}{1/18} \\
+            & \japerm     &   & \jbperm   \\
+            & \japermI    &   & \jbpermI  \\
+            &             &   & \\
+            \multirow{4}{*}{\pll{t.png}} & \pllname{T}{blue}{1/18}  & \multirow{4}{*}{\pll{f.png}} & \pllname{F}{blue}{1/18}  \\
+            & \tperm      &   & \fperm  \\
+            & \tpermI     &   &  \\
+            &             &   &  \\
+            \multirow{4}{*}{\pll{ra.png}} & \pllname{Ra}{blue}{1/18}  & \multirow{4}{*}{\pll{rb.png}} & \pllname{Rb}{blue}{1/18}  \\
+            & \raperm     &   & \rbperm  \\
+            &             &   & \rbpermI \\
+            &             &   &  \\
         \end{tabularx}
     \end{table}
 
     \begin{table}
-        \section*{Diagonal Corner Swap}
+        \subsection*{Diagonal Corner Swap}
         \begin{tabularx}{\textwidth}{cXcX}
-        \multirow{4}{*}{\pll{y.png}} & \pllname{Y}{blue}{1/18} & \multirow{4}{*}{\pll{v.png}} & \pllname{V}{blue}{1/18} \\
-                          & \yperm      &   & \vperm   \\
-                          &             &   &   \\
-                          &             &   &   \\
-        \multirow{4}{*}{\pll{na.png}} & \pllname{Na}{red}{1/72}  & \multirow{4}{*}{\pll{nb.png}} & \pllname{Nb}{red}{1/72}  \\
-                          & \naperm     &   & \nbperm  \\
-                          & \napermI    &   &  \\
-                          &             &   &  \\
+            \multirow{4}{*}{\pll{y.png}} & \pllname{Y}{blue}{1/18} & \multirow{4}{*}{\pll{v.png}} & \pllname{V}{blue}{1/18} \\
+            & \yperm      &   & \vperm   \\
+            &             &   &   \\
+            &             &   &   \\
+            \multirow{4}{*}{\pll{na.png}} & \pllname{Na}{red}{1/72}  & \multirow{4}{*}{\pll{nb.png}} & \pllname{Nb}{red}{1/72}  \\
+            & \naperm     &   & \nbperm  \\
+            & \napermI    &   &  \\
+            &             &   &  \\
         \end{tabularx}
     \end{table}
 
     \begin{table}
-        \section*{G Permutations}
+        \subsection*{G Permutations}
         \begin{tabularx}{\textwidth}{cXcX}
-        \multirow{4}{*}{\pll{ga.png}} & \pllname{Ga}{blue}{1/18} & \multirow{4}{*}{\pll{gb.png}} & \pllname{Gb}{blue}{1/18} \\
-                          & \gaperm     &   & \gbperm   \\
-                          & \gapermI    &   & \gbpermI  \\
-                          &             &   &   \\
-        \multirow{4}{*}{\pll{gc.png}} & \pllname{Gc}{blue}{1/18}  & \multirow{4}{*}{\pll{gd.png}} & \pllname{Gd}{blue}{1/18}  \\
-                          & \gcperm     &   & \gdperm  \\
-                          & \gcpermI    &   & \gdpermI \\
-                          &             &   &  \\
+            \multirow{4}{*}{\pll{ga.png}} & \pllname{Ga}{blue}{1/18} & \multirow{4}{*}{\pll{gb.png}} & \pllname{Gb}{blue}{1/18} \\
+            & \gaperm     &   & \gbperm   \\
+            & \gapermI    &   & \gbpermI  \\
+            &             &   &   \\
+            \multirow{4}{*}{\pll{gc.png}} & \pllname{Gc}{blue}{1/18}  & \multirow{4}{*}{\pll{gd.png}} & \pllname{Gd}{blue}{1/18}  \\
+            & \gcperm     &   & \gdperm  \\
+            & \gcpermI    &   & \gdpermI \\
+            &             &   &  \\
         \end{tabularx}
     \end{table}
+
+    % OLL \section
+    \begin{table}
+        \subsection*{OLL 1}
+        \begin{tabularx}{\textwidth}{cXcX}
+            \multirow{4}{*}{\oll{O45.png}} & \ollname{T1}{blue}{1/54} & \multirow{4}{*}{\oll{p.png}} & \ollname{P1}{blue}{1/54} \\
+            & \ishape     &   & \pshape   \\
+            &             &   &   \\
+            &             &   &   \\
+            \multirow{4}{*}{\oll{O45.png}} & \ollname{T2}{blue}{1/54} & \multirow{4}{*}{\oll{p.png}} & \ollname{F4}{blue}{1/54} \\
+            & \olltII     &   & \ollfIV   \\
+            &             &   &   \\
+            &             &   &   \\
+        \end{tabularx}
+    \end{table}
+
+
+    \begin{table}
+        \subsection*{OLL 2}
+        \begin{tabularx}{\textwidth}{cXcX}
+            \multirow{4}{*}{\oll{sune.png}} & \ollname{Sune}{blue}{4/27} & \multirow{4}{*}{\oll{antisune.png}} & \ollname{antisune}{blue}{4/27} \\
+            & \sune     &   & \antisune   \\
+            & \suneI    &   & \antisuneI  \\
+            &             &   &   \\
+            \multirow{4}{*}{\oll{pi.png}} & \ollname{Pi}{blue}{4/27}  & \multirow{4}{*}{\oll{cross.png}} & \ollname{Cross}{green}{2/27}  \\
+            & \pishape     &   & \cross  \\
+            & \pishapeI    &   & \crossI \\
+            &             &   &  \\
+            \multirow{4}{*}{\oll{t.png}} & \ollname{T}{blue}{4/27}  & \multirow{4}{*}{\oll{l.png}} & \ollname{L}{blue}{4/27}  \\
+            & \tshape     &   & \lshape  \\
+            & \tshapeI    &   & \lshapeI \\
+            &             &   &  \\
+            \multirow{4}{*}{\oll{headlights.png}} & \ollname{Headlights}{blue}{4/27}  &  &  \\
+            & \headlights     &   &   \\
+            & \headlightsI    &   &  \\
+            &             &   &  \\
+        \end{tabularx}
+    \end{table}
+
 
 \end{document}
 
