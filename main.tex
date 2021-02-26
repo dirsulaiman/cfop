@@ -1,10 +1,18 @@
 \documentclass{article}
-\usepackage[a4paper, bindingoffset=0in, left=0.15in, right=0.15in, top=.7in, bottom=.5in, footskip=.25in]{geometry}
+\usepackage[
+    a4paper, 
+    bindingoffset=0in, 
+    left=0.15in, 
+    right=0.15in, 
+    top=.7in, 
+    bottom=.5in, 
+    footskip=.25in]{geometry}
 \usepackage{multicol}
 \usepackage{multirow}
 \usepackage{graphicx}
 \usepackage{color}
 \usepackage{tabularx}
+\usepackage{float}
 
 % microtype for set space length
 \usepackage[T1]{fontenc}
@@ -87,7 +95,7 @@
 % G Permutations
 \newcommand{\gaperm}{\algorithm{D' R2 (U R' U R') \key{U'} R U' R2 (U' D) \key{R'} U R }}
 \newcommand{\gapermI}{\algorithm{\yrotate{y'} (RU R'U' R') UF (RU R U' R') F' U R' U2 R}}
-\newcommand{\gbperm}{\algorithm{D R' U R (U D') \key{R2} U (R' U R U') R U' R2}}
+\newcommand{\gbperm}{\algorithm{D R' U' R (U D') \key{R2} U (R' U R U') R U' R2}}
 \newcommand{\gbpermI}{\algorithm{R' U' R \yrotate{y} R2 u (R' U R U' R) u' R2}}
 \newcommand{\gcperm}{\algorithm{D R2 U' R U' (\bluefamily{R U R' U}) R2 (U D') \key{R} U' R'}}
 \newcommand{\gcpermI}{\algorithm{\yrotate{y} F2' D' L U' L U L' D F2 R U' R'}}
@@ -122,7 +130,8 @@
 \author{Dir Sulaiman}
 
 \begin{document}
-    \begin{table}
+    \section*{Permutations Last Layer}
+    \begin{table}[H]
         \subsection*{Corners Only}
         \begin{tabularx}{\textwidth}{cXcX}
             \multirow{4}{*}{\pll{aa.png}} & \pllname{Aa}{blue}{1/18} & \multirow{4}{*}{\pll{ab.png}} & \pllname{Ab}{blue}{1/18} \\
@@ -136,7 +145,7 @@
         \end{tabularx}
     \end{table}
 
-    \begin{table}
+    \begin{table}[H]
         \subsection*{Edges Only}
         \begin{tabularx}{\textwidth}{cXcX}
             \multirow{4}{*}{\pll{ua.png}} & \pllname{Ua}{blue}{1/18} & \multirow{4}{*}{\pll{ub.png}} & \pllname{Ub}{blue}{1/18} \\
@@ -150,7 +159,7 @@
         \end{tabularx}
     \end{table}
 
-    \begin{table}
+    \begin{table}[H]
         \subsection*{Adjacent Corner Swap}
         \begin{tabularx}{\textwidth}{cXcX}
             \multirow{4}{*}{\pll{ja.png}} & \pllname{Ja}{blue}{1/18} & \multirow{4}{*}{\pll{jb.png}} & \pllname{Jb}{blue}{1/18} \\
@@ -168,7 +177,7 @@
         \end{tabularx}
     \end{table}
 
-    \begin{table}
+    \begin{table}[H]
         \subsection*{Diagonal Corner Swap}
         \begin{tabularx}{\textwidth}{cXcX}
             \multirow{4}{*}{\pll{y.png}} & \pllname{Y}{blue}{1/18} & \multirow{4}{*}{\pll{v.png}} & \pllname{V}{blue}{1/18} \\
@@ -182,7 +191,7 @@
         \end{tabularx}
     \end{table}
 
-    \begin{table}
+    \begin{table}[H]
         \subsection*{G Permutations}
         \begin{tabularx}{\textwidth}{cXcX}
             \multirow{4}{*}{\pll{ga.png}} & \pllname{Ga}{blue}{1/18} & \multirow{4}{*}{\pll{gb.png}} & \pllname{Gb}{blue}{1/18} \\
@@ -197,7 +206,8 @@
     \end{table}
 
     % OLL \section
-    \begin{table}
+    \section*{Orientation Last Layer}
+    \begin{table}[H]
         \subsection*{OLL 1}
         \begin{tabularx}{\textwidth}{cXcX}
             \multirow{4}{*}{\oll{O45.png}} & \ollname{T1}{blue}{1/54} & \multirow{4}{*}{\oll{p.png}} & \ollname{P1}{blue}{1/54} \\
@@ -212,7 +222,7 @@
     \end{table}
 
 
-    \begin{table}
+    \begin{table}[H]
         \subsection*{OLL 2}
         \begin{tabularx}{\textwidth}{cXcX}
             \multirow{4}{*}{\oll{sune.png}} & \ollname{Sune}{blue}{4/27} & \multirow{4}{*}{\oll{antisune.png}} & \ollname{antisune}{blue}{4/27} \\
